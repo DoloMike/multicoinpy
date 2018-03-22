@@ -22,7 +22,7 @@ def login():
     password = params.get('password', None)
 
     if password == APP_PASSWORD:
-        jwtHeader = {'jwt': create_jwt(identity=password)}
+        jwtHeader = {'jwt': create_jwt(identity=request.remote_addr)}
         return jsonify(jwtHeader), 200
     else:
         return jsonify({"msg": "Bad password"}), 422
